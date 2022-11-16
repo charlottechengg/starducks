@@ -1,24 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import CssBaseline from '@mui/material/CssBaseline';
+import InputAdornments from './components/Authentication/InputAdornments';
+import AuthenticationPage from './components/Authentication/AuthenticationPage';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#7F669D',
+      contrastText: "#fff"
+    },
+    secondary: {
+      main: '#BA94D1',
+    },
+    Info: {
+      main: '#DEBACE',
+    },
+    Success: {
+      main: '#BCCEF8',
+    },
+    Warning: {
+      main: '#FBFACD',
+    },
+  },
+});
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+        <AuthenticationPage/>
+    </ThemeProvider>
   );
 }
 
