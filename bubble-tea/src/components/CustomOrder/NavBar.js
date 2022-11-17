@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { useTheme } from "@mui/material/styles";
 import { auth, db, logout } from "../../helper/Firebase"
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -19,14 +20,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const pages = ['Menu', 'About', 'Contact'];
 const settings = ['Profile', 'Account'];
 
-
-const ResponsiveNavBar = ({ setTheme }) => {
+const ResponsiveNavBar = ({ shoppingItem }) => {
+    const theme = useTheme()
     const navigate = useNavigate();
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const [shoppingItem, setShoppingItem] = React.useState(0);
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -80,7 +80,7 @@ const ResponsiveNavBar = ({ setTheme }) => {
         <AppBar position="sticky" sx={{ bgcolor: "#222222" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Box sx={{ border:0 }}>
+                    <Box sx={{ border: 0 }}>
                         <img style={{ width: "10%", height: "10%" }} src="/logo.jpg" />
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -109,18 +109,19 @@ const ResponsiveNavBar = ({ setTheme }) => {
                                 <Typography textAlign="center" sx={{ color: "#222222" }} >{setting}</Typography>
 
                             </MenuItem>))}
-                            <MenuItem key="Logout" onClick={logout}>
-                                <Typography textAlign="center" sx={{ color: "#222222" }} >Logout
-                                </Typography>
+                            <MenuItem key="Logout">
+                                <Typography textAlign="center" sx={{ color: "#222222" }} >Logout</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
 
-                    <Box sx={{ marginLeft:'2%', marginRight:'2%', display: 'inline-flex' }}>
-                        <ShoppingBasketIcon />
-                        <Box sx={{ marginLeft:'20%' }}>
-                            <Typography>{shoppingItem}</Typography>
-                        </Box>
+                    <Box sx={{ marginLeft: '2%', marginRight: '2%', display: 'inline-flex' }}>
+                        <IconButton sx={{ color: '#EDEDED' }} onClick={() => navigate('../checkout')}>
+                            <ShoppingBasketIcon />
+                            <Box sx={{ marginLeft: '20%' }}>
+                                <Typography>{shoppingItem}</Typography>
+                            </Box>
+                        </IconButton>
                     </Box>
                 </Toolbar>
             </Container>

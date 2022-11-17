@@ -21,6 +21,12 @@
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "6.4.3",
     "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4",
+    "react-router-dom": "6.4.3",
+    "@mui/material": "5.10.14",
+    "@mui/icons-material": "5.10.14",
+    "@emotion/react": "11.10.5",
+    "@emotion/styled": "11.10.5",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
