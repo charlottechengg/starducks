@@ -14,8 +14,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
+import { useTheme } from "@mui/material/styles";
 
 const sizes = [
     {
@@ -50,6 +50,7 @@ const MenuProps = {
 };
 
 export default function CustomerOrder() {
+    const theme = useTheme()
     const navigate = useNavigate();
     const basePriceS = 4.99
     const basePriceM = 5.99

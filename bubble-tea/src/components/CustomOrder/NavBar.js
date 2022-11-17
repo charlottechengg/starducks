@@ -12,16 +12,18 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { useTheme } from "@mui/material/styles";
 
 const pages = ['Menu', 'About', 'Contact'];
 const settings = ['Profile', 'Account'];
 
 const ResponsiveNavBar = ({ shoppingItem }) => {
+    const theme = useTheme()
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    
+
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -54,7 +56,7 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
         <AppBar position="sticky" sx={{ bgcolor: "#222222" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Box sx={{ border:0 }}>
+                    <Box sx={{ border: 0 }}>
                         <img style={{ width: "10%", height: "10%" }} src="/logo.jpg" />
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -89,11 +91,13 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
                         </Menu>
                     </Box>
 
-                    <Box sx={{ marginLeft:'2%', marginRight:'2%', display: 'inline-flex' }}>
-                        <ShoppingBasketIcon />
-                        <Box sx={{ marginLeft:'20%' }}>
-                            <Typography>{shoppingItem}</Typography>
-                        </Box>
+                    <Box sx={{ marginLeft: '2%', marginRight: '2%', display: 'inline-flex' }}>
+                        <IconButton sx={{ color: '#EDEDED' }} onClick={() => navigate('../check-out')}>
+                            <ShoppingBasketIcon />
+                            <Box sx={{ marginLeft: '20%' }}>
+                                <Typography>{shoppingItem}</Typography>
+                            </Box>
+                        </IconButton>
                     </Box>
                 </Toolbar>
             </Container>
