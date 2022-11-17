@@ -1,7 +1,7 @@
 # starducks
 
 ### How to run
-This is an application boostraped with React.js, to run this project, make sure you have node and react installed locally.
+This is an application boostrapped with React.js, to run this project, make sure you have node and react installed locally.
 On your terminal
 1. Clone the project to your local machine.
 2. `cd` into `startducks/bubble-tea`
