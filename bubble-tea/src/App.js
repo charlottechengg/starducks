@@ -1,4 +1,7 @@
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CustomerOrder from './components/CustomOrder/CustomOrder';
+import Menu from './components/Menu';
 import CssBaseline from '@mui/material/CssBaseline';
 import InputAdornments from './components/Authentication/InputAdornments';
 import AuthenticationPage from './components/Authentication/AuthenticationPage';
@@ -28,10 +31,20 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-        <AuthenticationPage/>
-    </ThemeProvider>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Menu />} />
+          <Route exact path="/custom-order" element={<CustomerOrder />} />
+          <Route exact path="/log-in" element={
+            <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <AuthenticationPage />
+          </ThemeProvider>
+          } />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
