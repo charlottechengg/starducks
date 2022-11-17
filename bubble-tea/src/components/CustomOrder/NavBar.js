@@ -16,12 +16,12 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 const pages = ['Menu', 'About', 'Contact'];
 const settings = ['Profile', 'Account'];
 
-const ResponsiveNavBar = ({ setTheme }) => {
+const ResponsiveNavBar = ({ shoppingItem }) => {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const [shoppingItem, setShoppingItem] = React.useState(0);
+    
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
