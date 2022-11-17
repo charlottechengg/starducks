@@ -1,0 +1,102 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Container from '@mui/material/Container';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+
+const pages = ['Menu', 'About', 'Contact'];
+const settings = ['Profile', 'Account'];
+
+const ResponsiveNavBar = ({ setTheme }) => {
+    const navigate = useNavigate();
+    const [name, setName] = useState("");
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [shoppingItem, setShoppingItem] = React.useState(0);
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
+    const pagesOnClick = (page) => {
+        setAnchorElNav(null);
+        if (page == "Menu") {
+            navigate('../')
+        } else {
+            navigate('../' + page.toLowerCase())
+        }
+    }
+
+    const settingOnClick = (setting) => {
+        setAnchorElUser(null);
+        console.log(setting.toLowerCase());
+    }
+
+
+    return (
+        <AppBar position="sticky" sx={{ bgcolor: "#222222" }}>
+            <Container maxWidth="xl">
+                <Toolbar disableGutters>
+                    <Box sx={{ border:0 }}>
+                        <img style={{ width: "10%", height: "10%" }} src="/logo.jpg" />
+                    </Box>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        {pages.map((page) => (<Button key={page} onClick={() => pagesOnClick(page)} sx={{ my: 2, display: 'block', color: 'white' }}>
+                            {page}
+                        </Button>))}
+                    </Box>
+
+                    <Box sx={{ display: 'inline-flex' }}>
+                        <Tooltip title="Open settings">
+                            <IconButton aria-label="Avatar" onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                <AccountCircleIcon sx={{ fontSize: 35, color: "white" }} />
+                            </IconButton>
+                        </Tooltip>
+                        <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }} keepMounted transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
+                            <MenuItem key="status" >
+                                <Typography textAlign="center" sx={{ color: "#222222" }} >{name ? "Signed in as " + name : "Not signed in"}</Typography>
+                            </MenuItem>
+                            {settings.map((setting) => (<MenuItem key={setting} onClick={() => settingOnClick}>
+                                <Typography textAlign="center" sx={{ color: "#222222" }} >{setting}</Typography>
+
+                            </MenuItem>))}
+                            <MenuItem key="Logout">
+                                <Typography textAlign="center" sx={{ color: "#222222" }} >Logout</Typography>
+                            </MenuItem>
+                        </Menu>
+                    </Box>
+
+                    <Box sx={{ marginLeft:'2%', marginRight:'2%', display: 'inline-flex' }}>
+                        <ShoppingBasketIcon />
+                        <Box sx={{ marginLeft:'20%' }}>
+                            <Typography>{shoppingItem}</Typography>
+                        </Box>
+                    </Box>
+                </Toolbar>
+            </Container>
+        </AppBar>);
+};
+export default ResponsiveNavBar;
