@@ -62,7 +62,7 @@ export default function CustomerOrder() {
     const [quantity, setQuantity] = useState(1)
     const [sugar, setSugar] = useState('100%')
     const [ice, setIce] = useState('100%')
-    const [flavour, setFlavour] = useState('Original')
+    const [flavour, setFlavour] = useState('Origin')
     const [selectedToppings, setToppings] = useState(['Tapioca'])
 
     const favouriteOnclick = () => {
@@ -126,7 +126,7 @@ export default function CustomerOrder() {
                     <Box sx={{ display: 'flex', width: '100%', height: '100%' }}>
                         <Box sx={{ display: 'div', width: '100%', height: '100%', alignContent: 'center' }}>
                             <Typography align='center' sx={{ width: '100%', height: '100%', }}>
-                                <img style={{ width: "60%", height: "100%" }} src="/bubble_tea_large.jpeg" />
+                                <img style={{ width: "60%", height: "100%" }} src={`/bubble_tea_${size}.jpeg`} />
                             </Typography>
                         </Box>
                         <Box sx={{ width: '50%' }}>
