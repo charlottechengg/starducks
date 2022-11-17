@@ -8,8 +8,6 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { purple } from '@mui/material/colors';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
 export default function InputAdornments() {
   const [values, setValues] = React.useState({
     password: '',
@@ -80,15 +78,6 @@ export default function InputAdornments() {
               </InputAdornment>
             }
             label="Password"
-          />
-            <Checkbox
-            sx={{
-              color: purple[600],
-              '&.Mui-checked': {
-                color: purple[200],
-              },
-            }}
-            checked={values.agreeToTerms}
           />
         </FormControl>
         </div>

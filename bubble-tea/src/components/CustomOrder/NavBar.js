@@ -13,6 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useTheme } from "@mui/material/styles";
+import { auth, db, logout } from "../../helper/Firebase"
+import { query, collection, getDocs, where } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const pages = ['Menu', 'About', 'Contact'];
 const settings = ['Profile', 'Account'];
@@ -20,10 +23,10 @@ const settings = ['Profile', 'Account'];
 const ResponsiveNavBar = ({ shoppingItem }) => {
     const theme = useTheme()
     const navigate = useNavigate();
+    const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -51,6 +54,27 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
         console.log(setting.toLowerCase());
     }
 
+    const fetchUserName = async () => {
+        try {
+          const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+          const doc = await getDocs(q);
+          const data = doc.docs[0].data();
+
+            setName(data.name);
+            console.log(data.name)
+
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      useEffect(() => {
+        if (loading) return;
+        if (!user) {
+          console.log(user + " user");
+          return;
+        } ;
+        fetchUserName();
+      }, [user, loading]);
 
     return (
         <AppBar position="sticky" sx={{ bgcolor: "#222222" }}>
@@ -92,7 +116,7 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
                     </Box>
 
                     <Box sx={{ marginLeft: '2%', marginRight: '2%', display: 'inline-flex' }}>
-                        <IconButton sx={{ color: '#EDEDED' }} onClick={() => navigate('../check-out')}>
+                        <IconButton sx={{ color: '#EDEDED' }} onClick={() => navigate('../checkout')}>
                             <ShoppingBasketIcon />
                             <Box sx={{ marginLeft: '20%' }}>
                                 <Typography>{shoppingItem}</Typography>
