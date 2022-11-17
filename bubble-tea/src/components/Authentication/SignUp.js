@@ -43,19 +43,76 @@ export default function SignUp() {
   const theme = useTheme();
   const [values, setValues] = React.useState({
     password: "",
-    firstname: "",
-    lastname: "",
+	confirmPassword: "",
     email: "",
     showPassword: false,
-    agreeToTerms: false,
+	showConfirmPassword: false,
+    agreeToTerms: "",
   });
 
-  const [user, loading, error] = useAuthState(auth);
+
+  const [error, setError] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+	agreeToTerms: ''
+  })
+  const [user, loading, authError] = useAuthState(auth);
   const navigate = useNavigate();
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
+
+  const handleCheckbox = (prop) => (event) => {
+	setValues({ ...values, [prop]: event.target.checked });
+  };
+
+  const validateInput = (event) => {
+	let { name, value, checked } = event.target;
+	setError(prev => {
+	  const stateObj = { ...prev, [name]: "" };
+
+	  switch (name) {
+		case "email":
+		  if (!value) {
+			stateObj[name] = "Please enter email.";
+		  }
+		  break;
+
+		case "password":
+		  if (!value) {
+			stateObj[name] = "Please enter Password.";
+		  } else if (values.confirmPassword && value !== values.confirmPassword) {
+			stateObj["confirmPassword"] = "Password and Confirm Password does not match.";
+		  } else {
+			stateObj["confirmPassword"] = values.confirmPassword ? "" : error.confirmPassword;
+		  }
+		  break;
+
+		case "confirmPassword":
+		  if (!value) {
+			stateObj[name] = "Please enter Confirm Password.";
+		  } else if (values.password && value !== values.password) {
+			stateObj[name] = "Password and Confirm Password does not match.";
+		  }
+		  break;
+
+		case "agreeToTerms":
+
+		  if (!checked) {
+			stateObj[name] = "Please read and agree to terms.";
+		  }
+		  break;
+
+		default:
+		  break;
+		}
+
+		console.log(stateObj);
+		return stateObj;
+	});
+ }
 
   const handleClickShowPassword = () => {
     setValues({
@@ -63,7 +120,12 @@ export default function SignUp() {
       showPassword: !values.showPassword,
     });
   };
-
+  const handleClickShowConfirmPassword = () => {
+    setValues({
+      ...values,
+      showConfirmPassword: !values.showConfirmPassword,
+    });
+  };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -102,32 +164,6 @@ export default function SignUp() {
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-			<FormControl sx={{ mt: 1 }} fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-firstname">
-                  First Name *
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-firstname"
-                  value={values.firstname}
-                  onChange={handleChange("firstname")}
-                  label="Firstname"
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-			<FormControl sx={{ mt: 1 }} fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-lastname">
-                  Last Name *
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-lastname"
-                  value={values.lastname}
-                  onChange={handleChange("lastname")}
-                  label="Lastname"
-                />
-              </FormControl>
-            </Grid>
             <Grid item xs={12}>
               <FormControl sx={{ mt: 1 }} fullWidth variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-email">
@@ -136,11 +172,16 @@ export default function SignUp() {
                 <OutlinedInput
                   id="outlined-adornment-email"
                   value={values.email}
+
+				  name="email"
                   onChange={handleChange("email")}
+				  onBlur={validateInput}
                   label="Email"
                 />
               </FormControl>
+			  {error.email && <span style={{color: "purple" }} className='err'>{error.email}</span>}
             </Grid>
+
             <Grid item xs={12}>
               <FormControl sx={{ mt: 1 }} fullWidth variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">
@@ -150,7 +191,9 @@ export default function SignUp() {
                   id="outlined-adornment-password"
                   type={values.showPassword ? "text" : "password"}
                   value={values.password}
+				  name="password"
                   onChange={handleChange("password")}
+				  onBlur={validateInput}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -170,20 +213,75 @@ export default function SignUp() {
                   label="Password"
                 />
               </FormControl>
+			  {error.password && <span style={{color: "purple" }}  className='err'>{error.password}</span>}
+            </Grid>
+			<Grid item xs={12}>
+              <FormControl sx={{ mt: 1 }} fullWidth variant="outlined">
+                <InputLabel htmlFor="confirmPassword">
+				 Confirm Password *
+                </InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-confirmPassword"
+                  type={values.showConfirmPassword ? "text" : "password"}
+                  value={values.confirmPassword}
+				  name="confirmPassword"
+                  onChange={handleChange("confirmPassword")}
+				  onBlur={validateInput}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowConfirmPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showConfirmPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="ConfirmPassword"
+                />
+              </FormControl>
+			  {error.confirmPassword && <span style={{color: "purple" }} className='err'>{error.confirmPassword}</span>}
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="agreeToTerms" color="primary" />}
-                label="I agree to the following: Privacy Policy Tims Rewards Terms and Conditions Terms of Service"
+			<Grid container>
+			<Grid item xs={1}>
+			<FormControlLabel
+                control={
+					<Checkbox
+					required
+					checked={values.agreeToTerms}
+					onChange={handleCheckbox("agreeToTerms")}
+					onBlur={validateInput}
+					name='agreeToTerms'
+					color="primary" />
+				}
               />
+			</Grid>
+			<Grid item xs={11}>
+			<div> I agree to the following: <a href="./privacy-policy">Starducks Privacy Policy</a> and <a href="./privacy-policy"> Terms of Service</a>.</div>
+			</Grid>
+			</Grid>
+
+
+
+
+			{error.agreeToTerms && <span style={{color: "purple" }}  className='err'>{error.agreeToTerms}</span>}
             </Grid>
+
           </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
+			disabled={!values.agreeToTerms}
             sx={{ mt: 3, mb: 2 }}
-			onClick={() => registerWithEmailAndPassword(values.firstname,values.email, values.password)}
+			onClick={() => registerWithEmailAndPassword(values.email, values.password)}
           >
             Sign Up
           </Button>
