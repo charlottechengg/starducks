@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import InputAdornments from './components/Authentication/InputAdornments';
 import AuthenticationPage from './components/Authentication/AuthenticationPage';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Checkout from './components/Checkout/Checkout';
 
 const theme = createTheme({
   palette: {
@@ -33,12 +34,13 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      <CssBaseline />
         <Routes>
           <Route exact path="/" element={<Menu />} />
+          <Route exact path="/checkout" element={<Checkout />} />
           <Route exact path="/custom-order" element={<CustomerOrder />} />
-          <Route exact path="/log-in" element={
+          <Route exact path="/auth" element={
             <ThemeProvider theme={theme}>
-            <CssBaseline />
             <AuthenticationPage />
           </ThemeProvider>
           } />
