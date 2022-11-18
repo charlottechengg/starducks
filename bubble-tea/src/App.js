@@ -7,6 +7,7 @@ import InputAdornments from './components/Authentication/InputAdornments';
 import AuthenticationPage from './components/Authentication/AuthenticationPage';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Checkout from './components/Checkout/Checkout';
+import PrivacyPolicy from './components/Authentication/PrivacyPolicy';
 
 const theme = createTheme({
   palette: {
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/" element={<Menu />} />
           <Route exact path="/checkout" element={<Checkout />} />
           <Route exact path="/custom-order" element={<CustomerOrder />} />
+          <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route exact path="/auth" element={
             <ThemeProvider theme={theme}>
             <AuthenticationPage />

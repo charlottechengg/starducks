@@ -73,7 +73,12 @@ const signInWithGoogle = async () => {
       signOut(auth);
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      if (err.message == "Firebase: Error (auth/invalid-email)."){
+        alert("Dear starducks customer, please enter a valid Email.");
+      }
+      else{
+        alert("Dear startducsk customer, " + err.message)
+     }
 
   }
 };
@@ -83,18 +88,33 @@ const logInWithEmailAndPassword = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
-    alert(err.message);
+
+    if (err.message == "Firebase: Error (auth/invalid-email)."){
+        alert("Dear starducks customer, please enter a valid Email.");
+    }
+    else if (err.message == "Firebase: Error (auth/user-not-found)."){
+        alert("Dear starducks customer, user with the email could not be found.");
+    }
+    else if (err.message == "FirebaseError: Firebase: Error (auth/wrong-password)."){
+        alert("Dear starducks customer, please enter a correct password.");
+    }
+    else{
+        alert("Dear startducsk customer, " + err.message)
+    }
+
+
+
+
   }
 };
 
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
-      name,
       authProvider: "local",
       email,
     });
