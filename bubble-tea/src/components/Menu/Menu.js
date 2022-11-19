@@ -40,7 +40,9 @@ gap -> gap between each grip
 const clickHandler = (name) => {
   alert(name);
 };
+//to do
 const onMouseOver = () => {};
+
 const BubbleTea = ({ info }) => {
   const { name, price, image } = info;
   return (
@@ -67,6 +69,9 @@ function Buttons() {
         </li>
         <li>
           <a href="#">Green Teas</a>
+        </li>
+        <li>
+          <a href="#">Fruit Teas</a>
         </li>
       </ul>
     </div>
