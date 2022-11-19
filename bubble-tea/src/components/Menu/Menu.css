@@ -1,0 +1,115 @@
+/*setting all the elements to 0 margin and 0 padding*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*includes content,
+        padding and border*/
+}
+
+/*setting page text color and font*/
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+/*resize the window*/
+@media screen and (min-width: 300px) {
+    .bubbleTeaList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 850px) {
+    .bubbleTeaList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.bubbleTea {
+    background: rgb(235, 235, 235);
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+}
+
+.bubbleTea img {
+    text-align: center;
+}
+
+.bubbleTea h1 {
+    text-align: center;
+}
+
+.bubbleTea h4 {
+    color: #617d99;
+    font-size: 1rem;
+    text-align: center
+}
+
+/*button*/
+ul {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+ul li {
+    list-style: none;
+}
+
+ul li a {
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    margin: 20px 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #262626;
+    font-weight: bold;
+    transition: .5s;
+}
+
+ul li a:hover {
+    color: #fff;
+}
+
+ul li a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    transform: scaleY(2);
+    opacity: 0;
+    transition: .5s;
+    z-index: -1;
+}
+
+ul li a:hover:before {
+    transform: scaleY(1.2);
+    opacity: 1;
+}
+
+ul li a:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    transform: scale(0);
+    transition: .5s;
+    z-index: -1;
+}
+
+ul li a:hover:after {
+    transform: scale(1);
+}
