@@ -136,37 +136,37 @@ export default function CustomerOrder() {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                 }}>
-                    <Box sx={{ display: 'flex', width: '100%', height: '30%' }}>
-                        <Box sx={{ width: '90%' }}>
+                    <Grid container sx={{ display: 'flex', width: '100%', height: '30%', marginTop:'2%' }}>
+                        <Grid item md={11}>
                             <Button sx={{ color: '#EAEAEA' }} onClick={() => { navigate('../') }} >{"< Go Back"}</Button>
-                        </Box>
-                        <Box sx={{ width: '10%' }}>
+                        </Grid>
+                        <Grid item md={1}>
                             <IconButton onClick={() => favouriteOnclick()} >
                                 {favourite ? <FavoriteIcon sx={{ color: '#ff5252' }} /> : <FavoriteBorderIcon sx={{ color: '#ff5252' }} />}
                             </IconButton>
-                        </Box>
-                    </Box>
-                    <Box sx={{ display: 'flex', width: '100%', height: '100%' }}>
-                        <Box sx={{ width: '50%' }}>
-                            <Box sx={{ height: '30%' }}>
-                                <Typography >Bubble Tea</Typography>
-                                <Typography >${price}</Typography>
-                            </Box>
-                            <Box sx={{ height: '50%' }}>
-                                <Typography >Ingredient:</Typography>
-                                <Typography >Water</Typography>
-                                <Typography>Tea</Typography>
-                                <Typography>Milk</Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid container justifyContent='flex-end' md={12} rowSpacing={5} sx={{ mt:'1%' }} >
+                        <Grid item md={10}/>
+                        <Grid item md={2} sm={3} justifyContent='flex-end'>
+                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Bubble Tea</Typography>
+                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>${price}</Typography>
+                        </Grid>
+                        <Grid item md={10}/>
+                        <Grid item md={2} sm={3} justifyContent='flex-end'>
+                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Ingredient:</Typography>
+                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Water</Typography>
+                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Tea</Typography>
+                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Milk</Typography>
                                 {selectedToppings.map((topping) => (
-                                    <Typography>{topping}</Typography>
+                                    <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>{topping}</Typography>
                                 ))}
-                            </Box>
-                        </Box>
-                    </Box>
+                        </Grid>
+                    </Grid>
                 </Grid>
             
-                <Box sx={{ width: '30%', display: "flex", my: 8, mx:4, flexDirection:"column", height: '100%', alignItems: "center"}}>
-                    <FormControl sx={{ mt: 1}} fullWidth variant="outlined">
+                <Grid sx={{ width: '30%', display: "flex", my: 8, mx:4, flexDirection:"column", height: '100%', alignItems: "center", ml: 'auto', mr: 'auto' }}>
+                    <FormControl sx={{ mt: '35%'  }} fullWidth variant="outlined">
                         <InputLabel htmlFor="quantity">Quantity</InputLabel>
                         <OutlinedInput
                             id="quantity"
@@ -263,7 +263,7 @@ export default function CustomerOrder() {
                             ))}
                         </TextField>
                     </FormControl>
-                    <FormControl sx={{ mt: 1}} fullWidth variant="outlined">
+                    <FormControl sx={{ mt: '2%' }} fullWidth variant="outlined">
                         <InputLabel id='topping-label'>Toppings</InputLabel>
                             <Select
                                 labelId='topping-label'
@@ -288,7 +288,7 @@ export default function CustomerOrder() {
                             Add {quantity > 1 ? "items" : "item"} - $ {price}
                         </Button>
                     </Grid>
-                </Box>
+                </Grid>
             </Grid>
         </>
     );
