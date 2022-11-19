@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
   return (
-    <div>
+    <div className="menu">
       <ResponsiveNavBar />
       <Buttons />
       <BubbleTeaList />
@@ -51,6 +51,7 @@ const BubbleTea = ({ info }) => {
 
   return (
     <article className="bubbleTea" onClick={() => clickHandler(name)}>
+      <div className="card"></div>
       <img src={image} alt="" width="300"></img>
       <h1>{name}</h1>
       <h4>{price}</h4>
