@@ -36,7 +36,7 @@ function App() {
       <BrowserRouter>
         <CssBaseline />
         <Routes>
-          <Route exact path="/Menu" element={<Menu />} />
+          <Route exact path="/" element={<Menu />} />
           <Route exact path="/checkout" element={<Checkout />} />
           <Route exact path="/custom-order" element={<CustomerOrder />} />
           <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />

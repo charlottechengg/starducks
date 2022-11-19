@@ -2,6 +2,7 @@ import React from "react";
 import "./Menu.css";
 import { bubbleTeas } from "./bubbleTeas";
 import ResponsiveNavBar from "../CustomOrder/NavBar";
+import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
   return (
@@ -36,20 +37,20 @@ gap -> gap between each grip
     </section>
   );
 }
-//function invoked when items are clicked
-const clickHandler = (name) => {
-  alert(name);
-};
-//to do
-const onMouseOver = () => {};
 
 const BubbleTea = ({ info }) => {
   const { name, price, image } = info;
+
+  const navigate = useNavigate();
+
+  //function invoked when items are clicked
+  const clickHandler = (name) => {
+    let path = "../custom-order";
+    navigate(path);
+  };
+
   return (
-    <article
-      className="bubbleTea"
-      onClick={() => clickHandler(name)}
-      onMouseOver={() => {}}>
+    <article className="bubbleTea" onClick={() => clickHandler(name)}>
       <img src={image} alt="" width="300"></img>
       <h1>{name}</h1>
       <h4>{price}</h4>

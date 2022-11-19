@@ -30,11 +30,18 @@ body {
     background: rgb(235, 235, 235);
     border-radius: 1rem;
     padding: 1rem 2rem;
+    /*transtition speed*/
+    transition: transform .2s
+}
+/*hover effect*/
+.bubbleTea:hover{
+    transform: scale(1.05);
+
 }
 
 .bubbleTea img {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .bubbleTea h1 {
