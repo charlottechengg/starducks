@@ -27,7 +27,6 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
     const [name, setName] = useState("");
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const [hasSignIn, setHasSignIn] = React.useState(false);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -69,6 +68,7 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
           console.error(err);
         }
       };
+
       useEffect(() => {
         if (loading) return;
         if (!user) {
@@ -105,8 +105,8 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
                             vertical: 'top',
                             horizontal: 'right',
                         }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                            <MenuItem key="status" onClick={() => setHasSignIn(true) && navigate('../auth')} >
-                                <Typography textAlign="center" sx={{ color: "#222222" }} >{hasSignIn ? "Already Signed In" : "Log In"}</Typography>
+                            <MenuItem key="status" onClick={() => navigate('../auth')} >
+                                <Typography textAlign="center" sx={{ color: "#222222" }} >Log In</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
