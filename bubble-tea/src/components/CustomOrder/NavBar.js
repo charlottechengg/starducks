@@ -43,7 +43,7 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
   const pagesOnClick = (page) => {
     setAnchorElNav(null);
     if (page == "Menu") {
-      navigate("../Menu");
+      navigate("../");
     } else {
       navigate("../" + page.toLowerCase());
     }

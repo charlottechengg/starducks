@@ -14,13 +14,13 @@ body {
 }
 
 /*resize the window*/
-@media screen and (min-width: 300px) {
+@media screen and (min-width: 500px) {
     .bubbleTeaList {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 900px) {
     .bubbleTeaList {
         grid-template-columns: repeat(3, 1fr);
     }
