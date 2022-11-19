@@ -284,7 +284,7 @@ export default function CustomerOrder() {
                             </Select>
                     </FormControl>
                     <Grid sx={{ marginTop: '3%' }}>
-                        <Button onClick={() => setShoppingItem(shoppingItem + quantity)} variant="outlined">
+                        <Button sx={{ color: '#BA94D1', borderColor: '#BA94D1'  }} onClick={() => setShoppingItem(shoppingItem + quantity)} variant="outlined">
                             Add {quantity > 1 ? "items" : "item"} - $ {price}
                         </Button>
                     </Grid>

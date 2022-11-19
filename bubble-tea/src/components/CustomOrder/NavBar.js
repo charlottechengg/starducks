@@ -79,7 +79,7 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
       }, [user, loading]);
 
     return (
-        <AppBar position="sticky" sx={{ bgcolor: "#222222" }}>
+        <AppBar position="sticky" sx={{ bgcolor: "#7F669D" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography variant="h4" noWrap component="div" sx={{ mr: 2, fontWeight: 'bold', display: { xs: 'none', md: 'flex' } }}>
@@ -112,7 +112,7 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
                     </Box>
 
                     <Box sx={{ marginLeft: '2%', marginRight: '2%', display: 'inline-flex' }}>
-                        <IconButton sx={{ color: '#EDEDED' }} onClick={() => navigate('../checkout')}>
+                        <IconButton sx={{ color: '#FAF9F6' }} onClick={() => navigate('../checkout')}>
                             <ShoppingBasketIcon />
                             <Box sx={{ marginLeft: '20%' }}>
                                 <Typography>{shoppingItem}</Typography>
