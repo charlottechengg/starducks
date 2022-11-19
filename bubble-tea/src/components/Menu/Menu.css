@@ -71,6 +71,7 @@ ul {
     margin: 0;
     padding: 0;
     display: flex;
+    font-size: 120%;
 }
 
 ul li {
@@ -81,7 +82,7 @@ ul li a {
     position: relative;
     display: block;
     padding: 10px 20px;
-    margin: 20px 0;
+    margin: 20px 10px;
     text-decoration: none;
     text-transform: uppercase;
     color: #262626;
