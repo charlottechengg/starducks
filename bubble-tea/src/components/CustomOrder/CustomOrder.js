@@ -147,19 +147,19 @@ export default function CustomerOrder() {
                         </Grid>
                     </Grid>
                     <Grid container justifyContent='flex-end' md={12} rowSpacing={5} sx={{ mt:'1%' }} >
-                        <Grid item md={10}/>
-                        <Grid item md={2} sm={3} justifyContent='flex-end'>
-                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Bubble Tea</Typography>
-                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>${price}</Typography>
+                        <Grid item md={9}/>
+                        <Grid item md={3} sm={3} justifyContent='flex-end'>
+                                <Typography fontSize={20} fontWeight='bold' color={size === 'large' ? '#B2B2B2' : '#022b3a'}>Bubble Tea</Typography>
+                                <Typography fontSize={20} color={size === 'large' ? '#B2B2B2' : '#022b3a'}>${price}</Typography>
                         </Grid>
-                        <Grid item md={10}/>
-                        <Grid item md={2} sm={3} justifyContent='flex-end'>
-                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Ingredient:</Typography>
-                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Water</Typography>
-                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Tea</Typography>
-                                <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Milk</Typography>
+                        <Grid item md={9}/>
+                        <Grid item md={3} sm={3} justifyContent='flex-end'>
+                                <Typography fontSize={20} fontWeight='bold' color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Ingredient:</Typography>
+                                <Typography fontSize={20} color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Water</Typography>
+                                <Typography fontSize={20} color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Tea</Typography>
+                                <Typography fontSize={20} color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Milk</Typography>
                                 {selectedToppings.map((topping) => (
-                                    <Typography color={size === 'small' ? '#022b3a' : '#B2B2B2'}>{topping}</Typography>
+                                    <Typography fontSize={20} color={size === 'small' ? '#022b3a' : '#B2B2B2'}>{topping}</Typography>
                                 ))}
                         </Grid>
                     </Grid>
