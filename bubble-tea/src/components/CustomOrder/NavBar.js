@@ -82,9 +82,10 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
         <AppBar position="sticky" sx={{ bgcolor: "#222222" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                <Typography variant="h4" noWrap component="div" sx={{ mr: 2, fontWeight: 'bold', display: { xs: 'none', md: 'flex' } }}>
-                    LOGO
-                </Typography>
+                    <Typography variant="h4" noWrap component="div" sx={{ mr: 2, fontWeight: 'bold', display: { xs: 'none', md: 'flex' } }}>
+                        LOGO
+                    </Typography>
+
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (<Button key={page} onClick={() => pagesOnClick(page)} sx={{ my: 2, display: 'block', color: 'white' }}>
                             {page}
