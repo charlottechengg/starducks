@@ -34,7 +34,7 @@ body {
 }
 
 .bubbleTea {
-    background-color: rgba(183, 183, 183, 0.8);
+    background-color: rgba(183, 183, 183, 0.8); /*opcation*/
     border-radius: 1rem;
     padding: 1rem 2rem;
     /*transtition speed*/

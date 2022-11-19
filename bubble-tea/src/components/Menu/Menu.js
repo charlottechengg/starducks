@@ -8,33 +8,93 @@ export default function Menu() {
   return (
     <div className="menu">
       <ResponsiveNavBar />
-      <Buttons />
       <BubbleTeaList />
     </div>
   );
 }
+
 function BubbleTeaList() {
+  const [teaGroup, setBubbleTeas] = React.useState(bubbleTeas);
+  console.log(teaGroup);
   return (
-    <section
-      /*setting the bubble tea list
+    <>
+      <section
+        /*setting the bubble tea list
 with->90% of the viewpoint
 margin ->5 unit relating the size of the root text
 display ->shows the items in a grid
 gap -> gap between each grip
 */
-      className="bubbleTeaList"
-      style={{
-        width: "90vw",
-        maxWidth: "1280px",
-        margin: "5rem auto",
-        marginTop: "200px",
-        display: "grid",
-        gap: "5vw",
-      }}>
-      {bubbleTeas.map((info) => {
-        return <BubbleTea key={info.id} info={info} />;
-      })}
-    </section>
+        className="bubbleTeaList"
+        style={{
+          width: "90vw",
+          maxWidth: "1280px",
+          margin: "5rem auto",
+          marginTop: "200px",
+          display: "grid",
+          gap: "5vw",
+        }}>
+        {teaGroup.map((info) => {
+          return <BubbleTea key={info.id} info={info} />;
+        })}
+      </section>
+      <div style={{ marginTop: "px" }}>
+        <ul>
+          <li>
+            <a
+              onClick={() => {
+                setBubbleTeas(() => {
+                  return bubbleTeas;
+                });
+              }}>
+              All
+            </a>
+          </li>
+          <li>
+            <a
+              onClick={() => {
+                setBubbleTeas(() => {
+                  const newTeaGroup = bubbleTeas.filter(
+                    (tea) => tea.gradient == "black tea"
+                  );
+                  console.log(newTeaGroup);
+                  return newTeaGroup;
+                });
+              }}>
+              Black Teas
+            </a>
+          </li>
+          <li>
+            <a
+              onClick={() => {
+                setBubbleTeas(() => {
+                  const newTeaGroup = bubbleTeas.filter(
+                    (tea) => tea.gradient == "green tea"
+                  );
+                  console.log(newTeaGroup);
+                  return newTeaGroup;
+                });
+              }}>
+              Green Teas
+            </a>
+          </li>
+          <li>
+            <a
+              onClick={() => {
+                setBubbleTeas(() => {
+                  const newTeaGroup = bubbleTeas.filter(
+                    (tea) => tea.gradient == "fruit tea"
+                  );
+                  console.log(newTeaGroup);
+                  return newTeaGroup;
+                });
+              }}>
+              Fruit Teas
+            </a>
+          </li>
+        </ul>
+      </div>
+    </>
   );
 }
 
@@ -44,13 +104,13 @@ const BubbleTea = ({ info }) => {
   const navigate = useNavigate();
 
   //function invoked when items are clicked
-  const clickHandler = (name) => {
+  const clickItem = (name) => {
     let path = "../custom-order";
     navigate(path);
   };
 
   return (
-    <article className="bubbleTea" onClick={() => clickHandler(name)}>
+    <article className="bubbleTea" onClick={() => clickItem(name)}>
       <div className="card"></div>
       <img src={image} alt="" width="300"></img>
       <h1>{name}</h1>
@@ -58,24 +118,3 @@ const BubbleTea = ({ info }) => {
     </article>
   );
 };
-
-function Buttons() {
-  return (
-    <div style={{ marginTop: "px" }}>
-      <ul>
-        <li>
-          <a href="#">All</a>
-        </li>
-        <li>
-          <a href="#">Black Teas</a>
-        </li>
-        <li>
-          <a href="#">Green Teas</a>
-        </li>
-        <li>
-          <a href="#">Fruit Teas</a>
-        </li>
-      </ul>
-    </div>
-  );
-}
