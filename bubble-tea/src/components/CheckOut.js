@@ -26,7 +26,7 @@ render(
 );
 
 
-export default function Menu() {
+export default function CheckOut() {
   return (
     <App />
 
