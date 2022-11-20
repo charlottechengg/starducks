@@ -43,10 +43,10 @@ export default function SignUp() {
   const theme = useTheme();
   const [values, setValues] = React.useState({
     password: "",
-	confirmPassword: "",
+    confirmPassword: "",
     email: "",
     showPassword: false,
-	showConfirmPassword: false,
+    showConfirmPassword: false,
     agreeToTerms: "",
   });
 
@@ -55,7 +55,7 @@ export default function SignUp() {
     email: '',
     password: '',
     confirmPassword: '',
-	agreeToTerms: ''
+    agreeToTerms: ''
   })
   const [user, loading, authError] = useAuthState(auth);
   const navigate = useNavigate();
@@ -65,8 +65,10 @@ export default function SignUp() {
   };
 
   const handleCheckbox = (prop) => (event) => {
-	setValues({ ...values, [prop]: event.target.checked });
+	  setValues({ ...values, [prop]: event.target.checked });
   };
+
+
 
   const validateInput = (event) => {
 	let { name, value, checked } = event.target;
@@ -109,7 +111,6 @@ export default function SignUp() {
 		  break;
 		}
 
-		console.log(stateObj);
 		return stateObj;
 	});
  }
@@ -142,7 +143,6 @@ export default function SignUp() {
       // maybe trigger a loading screen
       return;
     }
-    console.log(user);
     if (user) navigate("/");
   }, [user, loading]);
 
@@ -163,7 +163,7 @@ export default function SignUp() {
           Sign up
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
+          <Grid container spacing={0}>
             <Grid item xs={12}>
               <FormControl sx={{ mt: 1 }} fullWidth variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-email">
@@ -172,10 +172,9 @@ export default function SignUp() {
                 <OutlinedInput
                   id="outlined-adornment-email"
                   value={values.email}
-
-				  name="email"
+				          name="email"
                   onChange={handleChange("email")}
-				  onBlur={validateInput}
+				          onBlur={validateInput}
                   label="Email"
                 />
               </FormControl>

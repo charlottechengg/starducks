@@ -34,6 +34,7 @@ const theme = createTheme({
 function App() {
   return (
     <>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <CssBaseline />
         <Routes>
@@ -42,12 +43,12 @@ function App() {
           <Route exact path="/custom-order" element={<CustomerOrder />} />
           <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route exact path="/auth" element={
-            <ThemeProvider theme={theme}>
+
               <AuthenticationPage />
-            </ThemeProvider>
           } />
         </Routes>
       </BrowserRouter>
+      </ThemeProvider>
     </>
   );
 }

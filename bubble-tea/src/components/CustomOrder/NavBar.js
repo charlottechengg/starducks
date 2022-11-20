@@ -61,8 +61,8 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
           const doc = await getDocs(q);
           const data = doc.docs[0].data();
 
-            setName(data.name);
-            console.log(data.name)
+            setName(data.email);
+            console.log(data.email)
 
         } catch (err) {
           console.error(err);
@@ -107,6 +107,9 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
                         }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
                             <MenuItem key="status" onClick={() => navigate('../auth')} >
                                 <Typography textAlign="center" sx={{ color: "#222222" }} >Log In</Typography>
+                            </MenuItem>
+                            <MenuItem key="status" onClick={logout} >
+                                <Typography textAlign="center" sx={{ color: "#222222" }} >Log out</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
