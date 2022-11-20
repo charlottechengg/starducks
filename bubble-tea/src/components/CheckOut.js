@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import Checkout from "./Checkout/Checkout";
+import ResponsiveNavBar from "./CustomOrder/NavBar";
 
 const styles = {
   fontFamily: "Helvetica",
@@ -28,8 +29,10 @@ render(
 
 export default function CheckOut() {
   return (
-    <App />
-
+    <>
+      <ResponsiveNavBar />
+      <App />
+    </>
   );
  
 }
