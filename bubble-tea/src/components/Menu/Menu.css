@@ -1,19 +1,14 @@
 /*setting all the elements to 0 margin and 0 padding*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /*includes content,
-        padding and border*/
-}
 
 /*setting page text color and font*/
-body {
+.menuPage {
+
+    /*includes content,
+    padding and border*/
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: rgb(0, 0, 0);
     background-image: url('../../../public/menu_background.jpg');
-    background-size: contain;
-    background-size: auto;
+    background-size: cover;
     background-position: 0% 18%;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -39,7 +34,12 @@ body {
     padding: 1rem 2rem;
     /*transtition speed*/
     transition: transform .2s;
+    /* animation: fadenum 2s; */
 }
+/* @keyframes fadenum{
+   0%{opacity: 0;}
+   100%{opacity: 1;}
+} */
 
 /*hover effect*/
 .bubbleTea:hover{
@@ -54,12 +54,15 @@ body {
 
 .bubbleTea h1 {
     text-align: center;
+    margin: 0;
 }
 
 .bubbleTea h4 {
     color: #1e5a30;
-    font-size: 1.2rem;
-    text-align: center
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 0;
+    margin: 0;
 }
 
 /*button*/

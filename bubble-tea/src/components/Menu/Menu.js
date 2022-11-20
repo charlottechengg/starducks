@@ -3,11 +3,20 @@ import "./Menu.css";
 import { bubbleTeas } from "./bubbleTeas";
 import ResponsiveNavBar from "../CustomOrder/NavBar";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Menu() {
   const [teaGroup, setBubbleTeas] = React.useState(bubbleTeas);
+  //the css only affects this page
+  useEffect(() => {
+    //add class to body element
+    document.body.classList.add("menuPage");
+    return () => {
+      document.body.classList.remove("menuPage");
+    };
+  }, []);
   return (
-    <div className="menu">
+    <div>
       <ResponsiveNavBar />
       <TeaTypeButtons setBubbleTeas={setBubbleTeas} />
       <BubbleTeaList teaGroup={teaGroup} />
