@@ -1,7 +1,7 @@
 export const bubbleTeas = [
   {
     id: 1,
-    name: "bubble tea 1",
+    name: "Bubble Tea",
     price: "$5.99",
     image: "bubbletea1.jpg",
     gradient: "black tea",

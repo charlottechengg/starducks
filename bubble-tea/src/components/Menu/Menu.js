@@ -7,6 +7,7 @@ import { useEffect } from "react";
 
 export default function Menu() {
   const [teaGroup, setBubbleTeas] = React.useState(bubbleTeas);
+
   //the css only affects this page
   useEffect(() => {
     //add class to body element
@@ -52,18 +53,20 @@ gap -> gap between each grip
 }
 
 const BubbleTea = ({ info }) => {
-  const { name, price, image } = info;
+  const { id, name, price, image } = info;
 
   const navigate = useNavigate();
 
   //function invoked when items are clicked
-  const clickItem = (name) => {
-    let path = "../custom-order";
-    navigate(path);
+  const clickItem = (id) => {
+    if (id == "1") {
+      let path = "../custom-order";
+      navigate(path);
+    }
   };
 
   return (
-    <article className="bubbleTea" onClick={() => clickItem(name)}>
+    <article className="bubbleTea" onClick={() => clickItem(id)}>
       <div className="card"></div>
       <img src={image} alt="" width="300"></img>
       <h1>{name}</h1>
@@ -73,12 +76,22 @@ const BubbleTea = ({ info }) => {
 };
 
 function TeaTypeButtons({ setBubbleTeas }) {
+  const [markAll, setMarkAll] = React.useState(markActive);
+  const [markBlack, setMarkBlack] = React.useState({});
+  const [markGreen, setMarkGreen] = React.useState({});
+  const [markFruit, setMarkFruit] = React.useState({});
+
   return (
     <div style={{ marginTop: "px" }}>
       <ul className="menuul">
         <li>
           <a
+            style={markAll}
             onClick={() => {
+              setMarkAll(markActive);
+              setMarkBlack({});
+              setMarkGreen({});
+              setMarkFruit({});
               setBubbleTeas(() => {
                 return bubbleTeas;
               });
@@ -88,7 +101,12 @@ function TeaTypeButtons({ setBubbleTeas }) {
         </li>
         <li>
           <a
+            style={markBlack}
             onClick={() => {
+              setMarkAll({});
+              setMarkBlack(markActive);
+              setMarkGreen({});
+              setMarkFruit({});
               setBubbleTeas(() => {
                 const newTeaGroup = bubbleTeas.filter(
                   (tea) => tea.gradient == "black tea"
@@ -101,7 +119,12 @@ function TeaTypeButtons({ setBubbleTeas }) {
         </li>
         <li>
           <a
+            style={markGreen}
             onClick={() => {
+              setMarkAll({});
+              setMarkBlack({});
+              setMarkGreen(markActive);
+              setMarkFruit({});
               setBubbleTeas(() => {
                 const newTeaGroup = bubbleTeas.filter(
                   (tea) => tea.gradient == "green tea"
@@ -114,7 +137,12 @@ function TeaTypeButtons({ setBubbleTeas }) {
         </li>
         <li>
           <a
+            style={markFruit}
             onClick={() => {
+              setMarkAll({});
+              setMarkBlack({});
+              setMarkGreen({});
+              setMarkFruit(markActive);
               setBubbleTeas(() => {
                 const newTeaGroup = bubbleTeas.filter(
                   (tea) => tea.gradient == "fruit tea"
@@ -129,3 +157,9 @@ function TeaTypeButtons({ setBubbleTeas }) {
     </div>
   );
 }
+
+const markActive = {
+  borderBottom: "4px solid black",
+  borderColor: "#7F669D",
+  marginTop: "0px",
+};
