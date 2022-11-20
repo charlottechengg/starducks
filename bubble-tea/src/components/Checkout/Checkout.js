@@ -84,7 +84,7 @@ function Leftside() {
             <Grid container columns={1}>
                 <Grid item xs={6}>
                     <Item>
-                        <a href="../menu" target="_blank" rel="noreferrer">
+                        <a href="../" target="_blank" rel="noreferrer">
                             <img src={logo} alt="example" width="200" height="200" />
                         </a></Item>
                 </Grid>
