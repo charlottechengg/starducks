@@ -2,9 +2,9 @@ export const bubbleTeas = [
   {
     id: 1,
     name: "bubble tea 1",
-    price: "$5",
+    price: "$5.99",
     image: "bubbletea1.jpg",
-    gradient: "fruit tea",
+    gradient: "black tea",
   },
   {
     id: 2,

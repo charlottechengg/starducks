@@ -23,7 +23,9 @@ import {
   auth,
   logInWithEmailAndPassword,
   signInWithGoogle,
+  logout
 } from "../../helper/Firebase";
+
 
 function Copyright(props) {
   return (
@@ -49,7 +51,12 @@ export default function SignIn(props) {
     showPassword: false,
   });
 
-  const [user, loading, error] = useAuthState(auth);
+  const [error, setError] = useState({
+    email: '',
+    password: ''
+  })
+
+  const [user, loading, authErr] = useAuthState(auth);
   const navigate = useNavigate();
 
   const handleChange = (prop) => (event) => {
@@ -79,9 +86,38 @@ export default function SignIn(props) {
       // maybe trigger a loading screen
       return;
     }
-    console.log(user);
     if (user) navigate("/");
   }, [user, loading]);
+
+  const validateInput = (event) => {
+    let { name, value } = event.target;
+    setError(prev => {
+      const stateObj = { ...prev, [name]: "" };
+
+      switch (name) {
+      case "email":
+        if (!value) {
+        stateObj[name] = "Please enter email.";
+        }
+        break;
+
+      case "password":
+        if (!value) {
+        stateObj[name] = "Please enter Password.";
+        } else if (values.confirmPassword && value !== values.confirmPassword) {
+        stateObj["confirmPassword"] = "Password and Confirm Password does not match.";
+        } else {
+        stateObj["confirmPassword"] = values.confirmPassword ? "" : error.confirmPassword;
+        }
+        break;
+
+      default:
+        break;
+      }
+
+      return stateObj;
+    });
+   }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -101,23 +137,32 @@ export default function SignIn(props) {
           Sign in
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Grid container spacing={0}>
+          <Grid item xs={12}>
         <FormControl sx={{ mt: 1}} fullWidth variant="outlined">
           <InputLabel htmlFor="outlined-adornment-email">Email *</InputLabel>
           <OutlinedInput
             id="outlined-adornment-email"
             value={values.email}
+            name="email"
             onChange={handleChange('email')}
+            onBlur={validateInput}
             label="Email"
           />
         </FormControl>
+        {error.email && <span style={{color: "purple" }} className='err'>{error.email}</span>}
+        </Grid>
 
+        <Grid item xs={12} mt={0}>
         <FormControl sx={{ mt: 1}} fullWidth variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
+            name="password"
             onChange={handleChange('password')}
+            onBlur={validateInput}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -133,6 +178,8 @@ export default function SignIn(props) {
             label="Password"
           />
         </FormControl>
+        {error.password && <span style={{color: "purple" }}  className='err'>{error.password}</span>}
+        </Grid>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -152,6 +199,7 @@ export default function SignIn(props) {
                 Forgot password?
               </Link>
             </Grid>
+          </Grid>
           </Grid>
         </Box>
       </Box>

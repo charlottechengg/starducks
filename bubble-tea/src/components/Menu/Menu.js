@@ -75,7 +75,7 @@ const BubbleTea = ({ info }) => {
 function TeaTypeButtons({ setBubbleTeas }) {
   return (
     <div style={{ marginTop: "px" }}>
-      <ul>
+      <ul className="menuul">
         <li>
           <a
             onClick={() => {

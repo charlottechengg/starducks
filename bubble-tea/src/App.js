@@ -33,24 +33,18 @@ const theme = createTheme({
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <CssBaseline />
-        <Routes>
-          <Route exact path="/" element={<Menu />} />
-          <Route exact path="/checkout" element={<Checkout />} />
-          <Route exact path="/custom-order" element={<CustomerOrder />} />
-          <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route
-            exact
-            path="/auth"
-            element={
-              <ThemeProvider theme={theme}>
-                <AuthenticationPage />
-              </ThemeProvider>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <CssBaseline />
+          <Routes>
+            <Route exact path="/" element={<Menu />} />
+            <Route exact path="/checkout" element={<Checkout />} />
+            <Route exact path="/custom-order" element={<CustomerOrder />} />
+            <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route exact path="/auth" element={<AuthenticationPage />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </>
   );
 }

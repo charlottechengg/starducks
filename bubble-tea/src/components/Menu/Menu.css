@@ -58,7 +58,7 @@
 }
 
 .bubbleTea h4 {
-    color: #1e5a30;
+    color: #6836a6;
     font-size: 1.3rem;
     text-align: center;
     margin-top: 0;
@@ -66,22 +66,22 @@
 }
 
 /*button*/
-ul {
+ul.menuul {
     position: absolute;
-    top: 200px;
+    top: 180px;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
     padding: 0;
     display: flex;
-    font-size: 120%;
+    font-size: 123%;
 }
 
-ul li {
+ul.menuul li {
     list-style: none;
 }
 
-ul li a {
+ul.menuul li a {
     position: relative;
     display: block;
     padding: 10px 20px;
@@ -93,11 +93,11 @@ ul li a {
     transition: .5s;
 }
 
-ul li a:hover {
+ul.menuul li a:hover {
     color: #fff;
 }
 
-ul li a:before {
+ul.menuul li a:before {
     content: '';
     position: absolute;
     top: 0;
@@ -112,12 +112,12 @@ ul li a:before {
     z-index: -1;
 }
 
-ul li a:hover:before {
+ul.menuul li a:hover:before {
     transform: scaleY(1.2);
     opacity: 1;
 }
 
-ul li a:after {
+ul.menuul li a:after {
     content: '';
     position: absolute;
     top: 1px;
@@ -130,6 +130,6 @@ ul li a:after {
     z-index: -1;
 }
 
-ul li a:hover:after {
+ul.menuul li a:hover:after {
     transform: scale(1);
 }
