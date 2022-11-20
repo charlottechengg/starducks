@@ -1,9 +1,9 @@
 import "./App.css";
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CustomerOrder from "./components/CustomOrder/CustomOrder";
 import Menu from "./components/Menu/Menu";
 import CssBaseline from "@mui/material/CssBaseline";
-import InputAdornments from "./components/Authentication/InputAdornments";
 import AuthenticationPage from "./components/Authentication/AuthenticationPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Checkout from "./components/Checkout/Checkout";
@@ -31,15 +31,18 @@ const theme = createTheme({
 });
 
 function App() {
+
+  const [shoppingItem, setShoppingItem] = useState(0);
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <CssBaseline />
           <Routes>
-            <Route exact path="/" element={<Menu />} />
-            <Route exact path="/checkout" element={<Checkout />} />
-            <Route exact path="/custom-order" element={<CustomerOrder />} />
+            <Route exact path="/" element={<Menu shoppingItem={shoppingItem}/>} />
+            <Route exact path="/checkout" element={<Checkout shoppingItem={shoppingItem}/>} />
+            <Route exact path="/custom-order" element={<CustomerOrder shoppingItem={shoppingItem} setShoppingItem={(num)=>setShoppingItem(num)}/>} />
             <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route exact path="/auth" element={<AuthenticationPage />} />
           </Routes>

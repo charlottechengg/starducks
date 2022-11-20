@@ -56,7 +56,7 @@ const MenuProps = {
     },
 };
 
-export default function CustomerOrder() {
+export default function CustomerOrder({shoppingItem, setShoppingItem}) {
     const theme = useTheme()
     const navigate = useNavigate();
     const basePriceS = 4.99
@@ -64,7 +64,7 @@ export default function CustomerOrder() {
     const basePriceL = 6.99
     const [price, setPrice] = useState(basePriceM);
     const [favourite, setFavourtie] = useState(0);
-    const [shoppingItem, setShoppingItem] = useState(0);
+    // const [shoppingItem, setShoppingItem] = useState(0);
     const [size, setSize] = useState('medium');
     const [quantity, setQuantity] = useState(1)
     const [sugar, setSugar] = useState('100%')

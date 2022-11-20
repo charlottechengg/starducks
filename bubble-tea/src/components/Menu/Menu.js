@@ -5,7 +5,7 @@ import ResponsiveNavBar from "../CustomOrder/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-export default function Menu() {
+export default function Menu({shoppingItem}) {
   const [teaGroup, setBubbleTeas] = React.useState(bubbleTeas);
   //the css only affects this page
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function Menu() {
   }, []);
   return (
     <div>
-      <ResponsiveNavBar />
+      <ResponsiveNavBar shoppingItem={shoppingItem}/>
       <TeaTypeButtons setBubbleTeas={setBubbleTeas} />
       <BubbleTeaList teaGroup={teaGroup} />
     </div>
