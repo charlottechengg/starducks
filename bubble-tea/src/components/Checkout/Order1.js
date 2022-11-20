@@ -22,16 +22,16 @@ const radioField = {
   // position: "absolute"
 };
 
-const Order1 = ({shoppingItem, selectedToppings}) => (
+const Order1 = ({shoppingItem, selectedToppings, price}) => (
   <fieldset style={fieldset}>
     <legend style={legend}>Order</legend>
     <div>
     { shoppingItem > 0 ? <label>
         
         <span style={{ marginLeft: "20px" }}>
-          <strong>Bubble Tea 1 * {shoppingItem}</strong>
+          <strong>Bubble Tea * {shoppingItem}</strong>
         </span>
-        <span style={{ float: "right" }}>$6.00</span>
+        <span style={{ float: "right" }}>{price}</span>
         <div style={{ marginLeft: "20px" }}>Toppings: {selectedToppings.join(", ")} </div>
         <span style={{ float: "right" }}><button>Edit Order</button></span>
       </label>

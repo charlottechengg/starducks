@@ -56,13 +56,13 @@ const MenuProps = {
     },
 };
 
-export default function CustomerOrder({shoppingItem, setShoppingItem, selectedToppings, setToppings}) {
+export default function CustomerOrder({shoppingItem, setShoppingItem, selectedToppings, setToppings, price, setPrice}) {
     const theme = useTheme()
     const navigate = useNavigate();
     const basePriceS = 4.99
     const basePriceM = 5.99
     const basePriceL = 6.99
-    const [price, setPrice] = useState(basePriceM);
+    // const [price, setPrice] = useState(basePriceM);
     const [favourite, setFavourtie] = useState(0);
     // const [shoppingItem, setShoppingItem] = useState(0);
     const [size, setSize] = useState('medium');

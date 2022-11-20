@@ -17,7 +17,7 @@ import Order1 from "./Order1";
 import Confirm from "./Confirm";
 import ResponsiveNavBar from "../CustomOrder/NavBar";
 
-const Checkout = ({shoppingItem, selectedToppings}) => {
+const Checkout = ({shoppingItem, selectedToppings, price}) => {
     return (
         <>
             <ResponsiveNavBar shoppingItem={shoppingItem}/>
@@ -29,9 +29,9 @@ const Checkout = ({shoppingItem, selectedToppings}) => {
                 <Grid item md={9}>
                     <Grid sx={{mt: '3%'}}>
                         <Payment />
-                        <Order1 shoppingItem={shoppingItem} selectedToppings={selectedToppings}/>
+                        <Order1 shoppingItem={shoppingItem} selectedToppings={selectedToppings} price={price}/>
                         {/* <Order2 /> */}
-                        <Confirm />
+                        <Confirm price={price}/>
                     </Grid>
                 </Grid>
 
