@@ -33,6 +33,7 @@ const theme = createTheme({
 function App() {
 
   const [shoppingItem, setShoppingItem] = useState(0);
+  const [selectedToppings, setToppings] = useState(['Tapioca'])
 
   return (
     <>
@@ -41,8 +42,14 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route exact path="/" element={<Menu shoppingItem={shoppingItem}/>} />
-            <Route exact path="/checkout" element={<Checkout shoppingItem={shoppingItem}/>} />
-            <Route exact path="/custom-order" element={<CustomerOrder shoppingItem={shoppingItem} setShoppingItem={(num)=>setShoppingItem(num)}/>} />
+            <Route exact path="/checkout" element={<Checkout shoppingItem={shoppingItem} selectedToppings={selectedToppings}/>} />
+            <Route exact path="/custom-order" element={
+              <CustomerOrder 
+                shoppingItem={shoppingItem} 
+                setShoppingItem={(num)=>setShoppingItem(num)}
+                selectedToppings={selectedToppings}
+                setToppings={setToppings}
+                />} />
             <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route exact path="/auth" element={<AuthenticationPage />} />
           </Routes>

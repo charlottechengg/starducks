@@ -56,7 +56,7 @@ const MenuProps = {
     },
 };
 
-export default function CustomerOrder({shoppingItem, setShoppingItem}) {
+export default function CustomerOrder({shoppingItem, setShoppingItem, selectedToppings, setToppings}) {
     const theme = useTheme()
     const navigate = useNavigate();
     const basePriceS = 4.99
@@ -70,7 +70,7 @@ export default function CustomerOrder({shoppingItem, setShoppingItem}) {
     const [sugar, setSugar] = useState('100%')
     const [ice, setIce] = useState('100%')
     const [flavour, setFlavour] = useState('Origin')
-    const [selectedToppings, setToppings] = useState(['Tapioca'])
+    // const [selectedToppings, setToppings] = useState(['Tapioca'])
 
     const favouriteOnclick = () => {
         if (favourite === 0) {
@@ -149,7 +149,7 @@ export default function CustomerOrder({shoppingItem, setShoppingItem}) {
                     <Grid container justifyContent='flex-end' md={12} rowSpacing={5} sx={{ mt:'1%' }} >
                         <Grid item md={9}/>
                         <Grid item md={3} sm={3} justifyContent='flex-end'>
-                                <Typography fontSize={20} fontWeight='bold' color={size === 'large' ? '#B2B2B2' : '#022b3a'}>Bubble Tea</Typography>
+                                <Typography fontSize={20} fontWeight='bold' color={size === 'large' ? '#B2B2B2' : '#022b3a'}>Bubble Tea 1</Typography>
                                 <Typography fontSize={20} color={size === 'large' ? '#B2B2B2' : '#022b3a'}>${price}</Typography>
                         </Grid>
                         <Grid item md={9}/>
