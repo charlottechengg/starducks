@@ -11,6 +11,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { useTheme } from '@mui/material/styles';
+import ResponsiveNavBar from '../CustomOrder/NavBar';
 
 
 export default function AuthenticationPage() {
@@ -33,6 +34,7 @@ export default function AuthenticationPage() {
   return (
 
       <Grid container component="main" sx={{ height: '100vh' }}>
+        <ResponsiveNavBar/>
         <Grid
           item
           xs={false}

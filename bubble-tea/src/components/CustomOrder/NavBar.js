@@ -83,7 +83,7 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography variant="h4" noWrap component="div" sx={{ mr: 2, fontWeight: 'bold', display: { xs: 'none', md: 'flex' } }}>
-                        LOGO
+                        Starducks
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
