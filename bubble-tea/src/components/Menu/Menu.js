@@ -5,17 +5,17 @@ import ResponsiveNavBar from "../CustomOrder/NavBar";
 import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
+  const [teaGroup, setBubbleTeas] = React.useState(bubbleTeas);
   return (
     <div className="menu">
       <ResponsiveNavBar />
-      <BubbleTeaList />
+      <TeaTypeButtons setBubbleTeas={setBubbleTeas} />
+      <BubbleTeaList teaGroup={teaGroup} />
     </div>
   );
 }
 
-function BubbleTeaList() {
-  const [teaGroup, setBubbleTeas] = React.useState(bubbleTeas);
-  console.log(teaGroup);
+function BubbleTeaList({ teaGroup }) {
   return (
     <>
       <section
@@ -38,62 +38,6 @@ gap -> gap between each grip
           return <BubbleTea key={info.id} info={info} />;
         })}
       </section>
-      <div style={{ marginTop: "px" }}>
-        <ul>
-          <li>
-            <a
-              onClick={() => {
-                setBubbleTeas(() => {
-                  return bubbleTeas;
-                });
-              }}>
-              All
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() => {
-                setBubbleTeas(() => {
-                  const newTeaGroup = bubbleTeas.filter(
-                    (tea) => tea.gradient == "black tea"
-                  );
-                  console.log(newTeaGroup);
-                  return newTeaGroup;
-                });
-              }}>
-              Black Teas
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() => {
-                setBubbleTeas(() => {
-                  const newTeaGroup = bubbleTeas.filter(
-                    (tea) => tea.gradient == "green tea"
-                  );
-                  console.log(newTeaGroup);
-                  return newTeaGroup;
-                });
-              }}>
-              Green Teas
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() => {
-                setBubbleTeas(() => {
-                  const newTeaGroup = bubbleTeas.filter(
-                    (tea) => tea.gradient == "fruit tea"
-                  );
-                  console.log(newTeaGroup);
-                  return newTeaGroup;
-                });
-              }}>
-              Fruit Teas
-            </a>
-          </li>
-        </ul>
-      </div>
     </>
   );
 }
@@ -118,3 +62,61 @@ const BubbleTea = ({ info }) => {
     </article>
   );
 };
+
+function TeaTypeButtons({ setBubbleTeas }) {
+  return (
+    <div style={{ marginTop: "px" }}>
+      <ul>
+        <li>
+          <a
+            onClick={() => {
+              setBubbleTeas(() => {
+                return bubbleTeas;
+              });
+            }}>
+            All
+          </a>
+        </li>
+        <li>
+          <a
+            onClick={() => {
+              setBubbleTeas(() => {
+                const newTeaGroup = bubbleTeas.filter(
+                  (tea) => tea.gradient == "black tea"
+                );
+                return newTeaGroup;
+              });
+            }}>
+            Black Teas
+          </a>
+        </li>
+        <li>
+          <a
+            onClick={() => {
+              setBubbleTeas(() => {
+                const newTeaGroup = bubbleTeas.filter(
+                  (tea) => tea.gradient == "green tea"
+                );
+                return newTeaGroup;
+              });
+            }}>
+            Green Teas
+          </a>
+        </li>
+        <li>
+          <a
+            onClick={() => {
+              setBubbleTeas(() => {
+                const newTeaGroup = bubbleTeas.filter(
+                  (tea) => tea.gradient == "fruit tea"
+                );
+                return newTeaGroup;
+              });
+            }}>
+            Fruit Teas
+          </a>
+        </li>
+      </ul>
+    </div>
+  );
+}
