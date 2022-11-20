@@ -35,7 +35,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <CssBaseline />
+        <CssBaseline />
         <Routes>
           <Route exact path="/" element={<Menu />} />
           <Route exact path="/checkout" element={<Checkout />} />
@@ -43,8 +43,8 @@ function App() {
           <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route exact path="/auth" element={
             <ThemeProvider theme={theme}>
-            <AuthenticationPage />
-          </ThemeProvider>
+              <AuthenticationPage />
+            </ThemeProvider>
           } />
         </Routes>
       </BrowserRouter>

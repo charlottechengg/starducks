@@ -17,7 +17,7 @@ import { auth, db, logout } from "../../helper/Firebase"
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-const pages = ['Menu', 'About', 'Contact'];
+const pages = ['Menu'];
 const settings = ['Profile', 'Account'];
 
 const ResponsiveNavBar = ({ shoppingItem }) => {
@@ -27,6 +27,7 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
     const [name, setName] = useState("");
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -67,6 +68,7 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
           console.error(err);
         }
       };
+
       useEffect(() => {
         if (loading) return;
         if (!user) {
@@ -77,12 +79,13 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
       }, [user, loading]);
 
     return (
-        <AppBar position="sticky" sx={{ bgcolor: "#222222" }}>
+        <AppBar position="sticky" sx={{ bgcolor: "#7F669D" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Box sx={{ border: 0 }}>
-                        <img style={{ width: "10%", height: "10%" }} src="/logo.jpg" />
-                    </Box>
+                    <Typography variant="h4" noWrap component="div" sx={{ mr: 2, fontWeight: 'bold', display: { xs: 'none', md: 'flex' } }}>
+                        LOGO
+                    </Typography>
+
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (<Button key={page} onClick={() => pagesOnClick(page)} sx={{ my: 2, display: 'block', color: 'white' }}>
                             {page}
@@ -102,21 +105,14 @@ const ResponsiveNavBar = ({ shoppingItem }) => {
                             vertical: 'top',
                             horizontal: 'right',
                         }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                            <MenuItem key="status" >
-                                <Typography textAlign="center" sx={{ color: "#222222" }} >{name ? "Signed in as " + name : "Not signed in"}</Typography>
-                            </MenuItem>
-                            {settings.map((setting) => (<MenuItem key={setting} onClick={() => settingOnClick}>
-                                <Typography textAlign="center" sx={{ color: "#222222" }} >{setting}</Typography>
-
-                            </MenuItem>))}
-                            <MenuItem key="Logout">
-                                <Typography textAlign="center" sx={{ color: "#222222" }} >Logout</Typography>
+                            <MenuItem key="status" onClick={() => navigate('../auth')} >
+                                <Typography textAlign="center" sx={{ color: "#222222" }} >Log In</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
 
                     <Box sx={{ marginLeft: '2%', marginRight: '2%', display: 'inline-flex' }}>
-                        <IconButton sx={{ color: '#EDEDED' }} onClick={() => navigate('../checkout')}>
+                        <IconButton sx={{ color: '#FAF9F6' }} onClick={() => navigate('../checkout')}>
                             <ShoppingBasketIcon />
                             <Box sx={{ marginLeft: '20%' }}>
                                 <Typography>{shoppingItem}</Typography>
