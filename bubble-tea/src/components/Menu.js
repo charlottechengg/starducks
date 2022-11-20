@@ -1,7 +1,5 @@
-import React from 'react';
+import React from "react";
 
 export default function Menu() {
-    return (
-        <h>Menu Page</h>
-    );
+  return <h>Menu Page</h>;
 }
