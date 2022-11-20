@@ -7,6 +7,7 @@ import { useEffect } from "react";
 
 export default function Menu() {
   const [teaGroup, setBubbleTeas] = React.useState(bubbleTeas);
+
   //the css only affects this page
   useEffect(() => {
     //add class to body element
@@ -73,12 +74,22 @@ const BubbleTea = ({ info }) => {
 };
 
 function TeaTypeButtons({ setBubbleTeas }) {
+  const [markAll, setMarkAll] = React.useState(markActive);
+  const [markBlack, setMarkBlack] = React.useState({});
+  const [markGreen, setMarkGreen] = React.useState({});
+  const [markFruit, setMarkFruit] = React.useState({});
+
   return (
     <div style={{ marginTop: "px" }}>
       <ul className="menuul">
         <li>
           <a
+            style={markAll}
             onClick={() => {
+              setMarkAll(markActive);
+              setMarkBlack({});
+              setMarkGreen({});
+              setMarkFruit({});
               setBubbleTeas(() => {
                 return bubbleTeas;
               });
@@ -88,7 +99,12 @@ function TeaTypeButtons({ setBubbleTeas }) {
         </li>
         <li>
           <a
+            style={markBlack}
             onClick={() => {
+              setMarkAll({});
+              setMarkBlack(markActive);
+              setMarkGreen({});
+              setMarkFruit({});
               setBubbleTeas(() => {
                 const newTeaGroup = bubbleTeas.filter(
                   (tea) => tea.gradient == "black tea"
@@ -101,7 +117,12 @@ function TeaTypeButtons({ setBubbleTeas }) {
         </li>
         <li>
           <a
+            style={markGreen}
             onClick={() => {
+              setMarkAll({});
+              setMarkBlack({});
+              setMarkGreen(markActive);
+              setMarkFruit({});
               setBubbleTeas(() => {
                 const newTeaGroup = bubbleTeas.filter(
                   (tea) => tea.gradient == "green tea"
@@ -114,7 +135,12 @@ function TeaTypeButtons({ setBubbleTeas }) {
         </li>
         <li>
           <a
+            style={markFruit}
             onClick={() => {
+              setMarkAll({});
+              setMarkBlack({});
+              setMarkGreen({});
+              setMarkFruit(markActive);
               setBubbleTeas(() => {
                 const newTeaGroup = bubbleTeas.filter(
                   (tea) => tea.gradient == "fruit tea"
@@ -129,3 +155,9 @@ function TeaTypeButtons({ setBubbleTeas }) {
     </div>
   );
 }
+
+const markActive = {
+  borderBottom: "4px solid black",
+  borderColor: "#7F669D",
+  marginTop: "0px",
+};
