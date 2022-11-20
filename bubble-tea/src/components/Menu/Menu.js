@@ -53,18 +53,20 @@ gap -> gap between each grip
 }
 
 const BubbleTea = ({ info }) => {
-  const { name, price, image } = info;
+  const { id, name, price, image } = info;
 
   const navigate = useNavigate();
 
   //function invoked when items are clicked
-  const clickItem = (name) => {
-    let path = "../custom-order";
-    navigate(path);
+  const clickItem = (id) => {
+    if (id == "1") {
+      let path = "../custom-order";
+      navigate(path);
+    }
   };
 
   return (
-    <article className="bubbleTea" onClick={() => clickItem(name)}>
+    <article className="bubbleTea" onClick={() => clickItem(id)}>
       <div className="card"></div>
       <img src={image} alt="" width="300"></img>
       <h1>{name}</h1>
