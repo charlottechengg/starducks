@@ -23,7 +23,7 @@ import {
   auth,
   logInWithEmailAndPassword,
   signInWithGoogle,
-  logout
+  sendPasswordReset
 } from "../../helper/Firebase";
 
 
@@ -194,8 +194,13 @@ export default function SignIn(props) {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
+            <Grid item xs={12}>
+              <Link variant="body2" onClick={signInWithGoogle} >
+                Sign in with Google
+              </Link>
+            </Grid>
+            <Grid item xs={12}>
+              <Link href="./password-reset" variant="body2" >
                 Forgot password?
               </Link>
             </Grid>
