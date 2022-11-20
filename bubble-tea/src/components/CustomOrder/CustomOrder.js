@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Grid, Icon, Typography } from '@mui/material';
+import { FormLabel, Grid, Icon, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
@@ -16,6 +16,13 @@ import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import InputLabel from '@mui/material/InputLabel';
 import { useTheme } from "@mui/material/styles";
+import Container from "@mui/material/Container";
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import smallImage from '../../asset/bubble_tea_small.jpg';
+import mediumImage from '../../asset/bubble_tea_medium.jpeg';
+import largeImage from '../../asset/bubble_tea_large.jpg';
 
 const sizes = [
     {
@@ -104,6 +111,18 @@ export default function CustomerOrder() {
         setPrice(result.toFixed(2))
     }
 
+    var image = mediumImage;
+    const showImage = () => {
+        if (size === "small") {
+            image = smallImage
+        } else if (size === "large") {
+            image = largeImage
+        } else {
+            image = mediumImage
+        }
+        return image;
+    }
+
     useEffect(() => calculatePrice())
 
     return (
@@ -111,136 +130,145 @@ export default function CustomerOrder() {
             <Box>
                 <ResponsiveAppBar shoppingItem={shoppingItem} />
             </Box>
-            <Box sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center' }}>
-                <Box sx={{ width: '50%', height: '100%', display: 'div' }}>
-                    <Box sx={{ display: 'flex', width: '100%', height: '30%' }}>
-                        <Box sx={{ width: '90%' }}>
-                            <Button onClick={() => { navigate('../') }} >{"< Go Back"}</Button>
-                        </Box>
-                        <Box sx={{ width: '10%' }}>
+            <Grid container component="main" sx={{ height: '100vh' }}>
+                <Grid item xs={false} sm={4} md={6} sx={{
+                    backgroundImage: `url(${showImage()})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                }}>
+                    <Grid container sx={{ display: 'flex', width: '100%', height: '30%', marginTop:'2%' }}>
+                        <Grid item md={11}>
+                            <Button sx={{ color: '#EAEAEA' }} onClick={() => { navigate('../') }} >{"< Go Back"}</Button>
+                        </Grid>
+                        <Grid item md={1}>
                             <IconButton onClick={() => favouriteOnclick()} >
                                 {favourite ? <FavoriteIcon sx={{ color: '#ff5252' }} /> : <FavoriteBorderIcon sx={{ color: '#ff5252' }} />}
                             </IconButton>
-                        </Box>
-                    </Box>
-                    <Box sx={{ display: 'flex', width: '100%', height: '100%' }}>
-                        <Box sx={{ display: 'div', width: '100%', height: '100%', alignContent: 'center' }}>
-                            <Typography align='center' sx={{ width: '100%', height: '100%', }}>
-                                <img style={{ width: "60%", height: "100%" }} src={`/bubble_tea_${size}.jpeg`} />
-                            </Typography>
-                        </Box>
-                        <Box sx={{ width: '50%' }}>
-                            <Box sx={{ height: '30%' }}>
-                                <Typography >Bubble Tea</Typography>
-                                <Typography >${price}</Typography>
-                            </Box>
-                            <Box sx={{ height: '50%' }}>
-                                <Typography >Ingredient:</Typography>
-                                <Typography >Water</Typography>
-                                <Typography>Tea</Typography>
-                                <Typography>Milk</Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid container justifyContent='flex-end' md={12} rowSpacing={5} sx={{ mt:'1%' }} >
+                        <Grid item md={9}/>
+                        <Grid item md={3} sm={3} justifyContent='flex-end'>
+                                <Typography fontSize={20} fontWeight='bold' color={size === 'large' ? '#B2B2B2' : '#022b3a'}>Bubble Tea</Typography>
+                                <Typography fontSize={20} color={size === 'large' ? '#B2B2B2' : '#022b3a'}>${price}</Typography>
+                        </Grid>
+                        <Grid item md={9}/>
+                        <Grid item md={3} sm={3} justifyContent='flex-end'>
+                                <Typography fontSize={20} fontWeight='bold' color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Ingredient:</Typography>
+                                <Typography fontSize={20} color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Water</Typography>
+                                <Typography fontSize={20} color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Tea</Typography>
+                                <Typography fontSize={20} color={size === 'small' ? '#022b3a' : '#B2B2B2'}>Milk</Typography>
                                 {selectedToppings.map((topping) => (
-                                    <Typography>{topping}</Typography>
+                                    <Typography fontSize={20} color={size === 'small' ? '#022b3a' : '#B2B2B2'}>{topping}</Typography>
                                 ))}
-                            </Box>
-                        </Box>
-                    </Box>
-                </Box>
-                <Box sx={{ width: '50%', height: '100%', borderLeft: 1 }}>
-                    <Typography align='center'>
-                        <Grid container spacing={1} direction="row" sx={{ marginTop: '3%', marginBottom: '1%' }} >
-                            <Grid item xs={4.5} />
-                            <Grid item xs={1}>
-                                <IconButton onClick={() => decreaseQuantity()}>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            
+                <Grid sx={{ width: '30%', display: "flex", my: 8, mx:4, flexDirection:"column", height: '100%', alignItems: "center", ml: 'auto', mr: 'auto' }}>
+                    <FormControl sx={{ mt: '35%'  }} fullWidth variant="outlined">
+                        <InputLabel htmlFor="quantity">Quantity</InputLabel>
+                        <OutlinedInput
+                            id="quantity"
+                            startAdornment={
+                                <InputAdornment position="start">
+                                <IconButton
+                                    onClick={() => decreaseQuantity()}
+                                    edge="start"
+                                >
                                     <RemoveCircleOutlineIcon />
                                 </IconButton>
-                            </Grid>
-                            <Grid item xs={1}>
-                                <Typography>{quantity}</Typography>
-                            </Grid>
-                            <Grid item xs={1}>
-                                <IconButton onClick={() => increaseQuantity()}>
+                                </InputAdornment>
+                            }
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                onClick={() => increaseQuantity()}
+                                edge="end"
+                                >
                                     <AddCircleOutlineIcon />
                                 </IconButton>
-                            </Grid>
-                            <Grid item xs={4.5} />
-                        </Grid>
-                        <Grid>
-                            <TextField
-                                id="size"
-                                select
-                                label="Size"
-                                value={size}
-                                onChange={(event) => {
-                                    setSize(event.target.value)
-                                }}
-                                helperText="Please select your drink size"
-                            >
-                                {sizes.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
-                        <Grid sx={{ marginTop: '1%' }}>
-                            <TextField
-                                id="sugar"
-                                select
-                                label="Sugar"
-                                value={sugar}
-                                onChange={(event) => {
-                                    setSugar(event.target.value)
-                                }}
-                                helperText="Please select your sweetness"
-                            >
-                                {sugars.map((option) => (
-                                    <MenuItem key={option} value={option}>
-                                        {option}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
-                        <Grid sx={{ marginTop: '1%' }}>
-                            <TextField
-                                id="flavour"
-                                select
-                                label="Flavour"
-                                value={flavour}
-                                onChange={(event) => {
-                                    setFlavour(event.target.value)
-                                }}
-                                helperText="Please select milk tea flavour"
-                            >
-                                {flavours.map((option) => (
-                                    <MenuItem key={option} value={option}>
-                                        {option}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
-                        <Grid sx={{ marginTop: '1%' }}>
-                            <TextField
-                                id="ice"
-                                select
-                                label="Ice"
-                                value={ice}
-                                onChange={(event) => {
-                                    setIce(event.target.value)
-                                }}
-                                helperText="Please select ice percentage"
-                            >
-                                {ices.map((option) => (
-                                    <MenuItem key={option} value={option}>
-                                        {option}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
-                        <Grid>
-                            <InputLabel id="topping-label">Toppings</InputLabel>
+                            </InputAdornment>
+                            }
+                            value={quantity}
+                            label="Password"
+                        />
+
+                        <TextField
+                            sx={{ marginTop: '2%' }}
+                            id="size"
+                            fullwidth
+                            select
+                            label="Size"
+                            value={size}
+                            onChange={(event) => {
+                                setSize(event.target.value)
+                            }}
+                        >
+                            {sizes.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+
+                        <TextField
+                            sx={{ marginTop: '2%' }}
+                            id="sugar"
+                            select
+                            label="Sugar"
+                            value={sugar}
+                            onChange={(event) => {
+                                setSugar(event.target.value)
+                            }}
+                        >
+                            {sugars.map((option) => (
+                                <MenuItem key={option} value={option}>
+                                    {option}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+
+                        <TextField
+                            sx={{ marginTop: '2%' }}
+                            id="flavour"
+                            select
+                            label="Flavour"
+                            value={flavour}
+                            onChange={(event) => {
+                                setFlavour(event.target.value)
+                            }}
+                        >
+                            {flavours.map((option) => (
+                                <MenuItem key={option} value={option}>
+                                    {option}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+
+                        <TextField
+                            sx={{ marginTop: '2%' }}
+                            id="ice"
+                            select
+                            label="Ice"
+                            value={ice}
+                            onChange={(event) => {
+                                setIce(event.target.value)
+                            }}
+                        >
+                            {ices.map((option) => (
+                                <MenuItem key={option} value={option}>
+                                    {option}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </FormControl>
+                    <FormControl sx={{ mt: '2%' }} fullWidth variant="outlined">
+                        <InputLabel id='topping-label'>Toppings</InputLabel>
                             <Select
-                                id="topping"
+                                labelId='topping-label'
+                                input={<OutlinedInput label="Toppings" />}
+                                sx={{ marginTop: '2%' }}
                                 multiple
                                 value={selectedToppings}
                                 onChange={handleChangeTopping}
@@ -254,15 +282,14 @@ export default function CustomerOrder() {
                                     </MenuItem>
                                 ))}
                             </Select>
-                        </Grid>
-                        <Grid sx={{ marginTop: '3%' }}>
-                            <Button onClick={() => setShoppingItem(shoppingItem + quantity)} variant="outlined">
-                                Add {quantity > 1 ? "items" : "item"} - $ {price}
-                            </Button>
-                        </Grid>
-                    </Typography>
-                </Box>
-            </Box>
+                    </FormControl>
+                    <Grid sx={{ marginTop: '3%' }}>
+                        <Button sx={{ color: '#BA94D1', borderColor: '#BA94D1'  }} onClick={() => setShoppingItem(shoppingItem + quantity)} variant="outlined">
+                            Add {quantity > 1 ? "items" : "item"} - $ {price}
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Grid>
         </>
     );
 }

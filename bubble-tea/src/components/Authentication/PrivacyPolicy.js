@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useTheme } from "@mui/material/styles";
 import { Grid } from '@mui/material';
-
+import ResponsiveNavBar from '../CustomOrder/NavBar';
 export default function PrivacyPolicy() {
     const theme = useTheme();
     return (
@@ -14,7 +14,7 @@ export default function PrivacyPolicy() {
         justifyContent="center"
         style={{ minHeight: '100vh' }}
         >
-
+        <ResponsiveNavBar/>
         <Box sx={{ mt: 7, width: '100%', maxWidth: '50vw' }}>
         <Typography variant="h3" gutterBottom>
             Privacy Policy
