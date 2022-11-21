@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import CustomerOrder from "./components/CustomOrder/CustomOrder";
 import Menu from "./components/Menu/Menu";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -43,7 +43,8 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
+        <HashRouter>
+        {/* <BrowserRouter> */}
           <CssBaseline />
           <Routes>
             <Route exact path="/" element={<Menu shoppingItem={shoppingItem}/>} />
@@ -69,7 +70,8 @@ function App() {
             <Route exact path="/receipt" element={<Receipt receiptItem={receiptItem} price={price} />} />
             <Route exact path="/password-reset" element={<PasswordReset />} />
           </Routes>
-        </BrowserRouter>
+          </HashRouter>
+        {/* </BrowserRouter> */}
       </ThemeProvider>
     </>
   );
