@@ -8,14 +8,36 @@ import { useEffect } from "react";
 export default function Menu() {
   const [teaGroup, setBubbleTeas] = React.useState(bubbleTeas);
 
+  const [W, setW] = React.useState(window.innerWidth);
+  const [H, setH] = React.useState(window.innerHeight);
+
+  const checkWSize = () => {
+    setW(window.innerWidth);
+  };
+  const checkHSize = () => {
+    setH(window.innerHeight);
+  };
+
   //the css only affects this page
   useEffect(() => {
+    window.addEventListener("resize", checkWSize);
+    window.addEventListener("resize", checkHSize);
+    // console.log("width" + W);
+    // console.log("height" + H);
+    // console.log(document.body.classList);
     //add class to body element
-    document.body.classList.add("menuPage");
+    if (W / H > 1800 / 1000) {
+      document.body.classList.remove("menuPage1");
+      document.body.classList.add("menuPage");
+    } else {
+      document.body.classList.remove("menuPage");
+      document.body.classList.add("menuPage1");
+    }
     return () => {
+      document.body.classList.remove("menuPage1");
       document.body.classList.remove("menuPage");
     };
-  }, []);
+  });
   return (
     <div>
       <ResponsiveNavBar />
