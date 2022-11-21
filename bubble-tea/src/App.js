@@ -9,6 +9,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Checkout from "./components/Checkout/Checkout";
 import PrivacyPolicy from "./components/Authentication/PrivacyPolicy";
 import Receipt from "./components/Receipt";
+import PasswordReset from "./components/Authentication/PasswordReset";
 
 const theme = createTheme({
   palette: {
@@ -66,6 +67,7 @@ function App() {
             <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route exact path="/auth" element={<AuthenticationPage />} />
             <Route exact path="/receipt" element={<Receipt receiptItem={receiptItem} price={price} />} />
+            <Route exact path="/password-reset" element={<PasswordReset />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

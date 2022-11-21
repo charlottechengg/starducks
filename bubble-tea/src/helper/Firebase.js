@@ -76,6 +76,9 @@ const signInWithGoogle = async () => {
       if (err.message == "Firebase: Error (auth/invalid-email)."){
         alert("Dear starducks customer, please enter a valid Email.");
       }
+      if (err.message == "Firebase: Error (auth/popup-closed-by-user)." ){
+
+      }
       else{
         alert("Dear startducsk customer, " + err.message)
      }
@@ -136,6 +139,7 @@ const sendPasswordReset = async (email) => {
 
 const logout = () => {
   signOut(auth);
+  alert("Dear starducks customer, you have signed out.")
 };
 
 export {

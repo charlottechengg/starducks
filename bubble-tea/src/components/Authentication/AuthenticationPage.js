@@ -14,6 +14,7 @@ import { useTheme } from '@mui/material/styles';
 import ResponsiveNavBar from '../CustomOrder/NavBar';
 
 
+
 export default function AuthenticationPage() {
   const [value, setValue] = React.useState('SignIn');
   const handleSubmit = (event) => {
@@ -32,9 +33,10 @@ export default function AuthenticationPage() {
 
 
   return (
+    <Box>
+      <ResponsiveNavBar/>
+        <Grid container component="main" sx={{ height: '100vh' }}>
 
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <ResponsiveNavBar/>
         <Grid
           item
           xs={false}
@@ -64,5 +66,6 @@ export default function AuthenticationPage() {
 
         </Grid>
       </Grid>
+      </Box>
   );
 }
