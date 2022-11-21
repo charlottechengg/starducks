@@ -12,6 +12,8 @@ const Receipt = ({receiptItem, price}) => {
 
   today = `${yyyy}-${mm}-${dd}`;
 
+  const total = (price * receiptItem).toFixed(2)
+
   return (
     <div style={{}}>
       <Row>
@@ -43,11 +45,13 @@ const Receipt = ({receiptItem, price}) => {
         <Table dataSource={[{
           id: 1,
           name: 'Bubble Tea',
-          price: `${price}`,
+          quantity: `${receiptItem}`,
+          price: `${total}`,
         }]}
           pagination={false}
         >
           <Table.Column title="Items" dataIndex='name' />
+          <Table.Column title="Quantity" dataIndex='quantity' />
           <Table.Column title="Price" dataIndex='price' />
         </Table>
       </Row>
@@ -57,15 +61,15 @@ const Receipt = ({receiptItem, price}) => {
           <table>
             <tr>
               <th>Subtotal :</th>
-              <td>${price}</td>
+              <td>${total}</td>
             </tr>
             <tr>
               <th>Tax</th>
-              <td>${(price * 0.13).toFixed(2)} </td>
+              <td>${(total * 0.13).toFixed(2)} </td>
             </tr>
             <tr>
               <th>Total :</th>
-              <td>${(price * 1.13).toFixed(2)}</td>
+              <td>${(total * 1.13).toFixed(2)}</td>
             </tr>
           </table>
         </Col>

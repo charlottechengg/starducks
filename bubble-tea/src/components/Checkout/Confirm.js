@@ -9,18 +9,17 @@ const PaymentInfo = ({ price, setShoppingItem, shoppingItem, setReceiptItem }) =
   const onClick = () => {
     const num = shoppingItem
     setReceiptItem(num)
-    setShoppingItem(0)
-    navigate("../")
+    navigate("../receipt")
   }
   return (
     <>
-      <h2>Total: {shoppingItem === 0 ? 0 : price}</h2>
+      <h2>Total: {shoppingItem === 0 ? 0 : (price*shoppingItem).toFixed(2)}</h2>
       {shoppingItem === 0 ? 
         <Button variant="outlined" >Confirm Order</Button>
         :
-        <a href="../receipt" target="_blank" rel="noreferrer">
+        // <a href="../receipt" target="_blank" rel="noreferrer">
         <Button variant="outlined" onClick={onClick}>Confirm Order</Button>
-      </a>
+      // </a>
       }
       
       

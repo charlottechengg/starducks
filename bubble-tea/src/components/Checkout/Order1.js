@@ -33,7 +33,7 @@ const Order1 = ({shoppingItem, selectedToppings, price}) => (
         </span>
         <span style={{ float: "right" }}>{price}</span>
         <div style={{ marginLeft: "20px" }}>Toppings: {selectedToppings.join(", ")} </div>
-        <span style={{ float: "right" }}><button>Edit Order</button></span>
+        {/* <span style={{ float: "right" }}><button>Edit Order</button></span> */}
       </label>
       : "You haven't placed any order yet"}
     </div>
