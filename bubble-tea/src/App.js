@@ -1,13 +1,14 @@
 import "./App.css";
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CustomerOrder from "./components/CustomOrder/CustomOrder";
 import Menu from "./components/Menu/Menu";
 import CssBaseline from "@mui/material/CssBaseline";
-import InputAdornments from "./components/Authentication/InputAdornments";
 import AuthenticationPage from "./components/Authentication/AuthenticationPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Checkout from "./components/Checkout/Checkout";
 import PrivacyPolicy from "./components/Authentication/PrivacyPolicy";
+import Receipt from "./components/Receipt";
 import PasswordReset from "./components/Authentication/PasswordReset";
 
 const theme = createTheme({
@@ -32,17 +33,40 @@ const theme = createTheme({
 });
 
 function App() {
+
+  const [shoppingItem, setShoppingItem] = useState(0);
+  const [selectedToppings, setToppings] = useState(['Tapioca'])
+  const basePriceM = 5.99
+  const [price, setPrice] = useState(basePriceM);
+  const [receiptItem, setReceiptItem] = useState(0)
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <CssBaseline />
           <Routes>
-            <Route exact path="/" element={<Menu />} />
-            <Route exact path="/checkout" element={<Checkout />} />
-            <Route exact path="/custom-order" element={<CustomerOrder />} />
+            <Route exact path="/" element={<Menu shoppingItem={shoppingItem}/>} />
+            <Route exact path="/checkout" element={
+              <Checkout 
+                shoppingItem={shoppingItem} 
+                selectedToppings={selectedToppings} price={price}
+                setShoppingItem={setShoppingItem}
+                setReceiptItem={(num) => setReceiptItem(num)}
+                />
+                } />
+            <Route exact path="/custom-order" element={
+              <CustomerOrder 
+                shoppingItem={shoppingItem} 
+                setShoppingItem={(num)=>setShoppingItem(num)}
+                selectedToppings={selectedToppings}
+                setToppings={setToppings}
+                price={price}
+                setPrice={setPrice}
+                />} />
             <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route exact path="/auth" element={<AuthenticationPage />} />
+            <Route exact path="/receipt" element={<Receipt receiptItem={receiptItem} price={price} />} />
             <Route exact path="/password-reset" element={<PasswordReset />} />
           </Routes>
         </BrowserRouter>
