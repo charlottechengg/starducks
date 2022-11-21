@@ -8,6 +8,7 @@ import AuthenticationPage from "./components/Authentication/AuthenticationPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Checkout from "./components/Checkout/Checkout";
 import PrivacyPolicy from "./components/Authentication/PrivacyPolicy";
+import Receipt from "./components/Receipt";
 
 const theme = createTheme({
   palette: {
@@ -36,6 +37,7 @@ function App() {
   const [selectedToppings, setToppings] = useState(['Tapioca'])
   const basePriceM = 5.99
   const [price, setPrice] = useState(basePriceM);
+  const [receiptItem, setReceiptItem] = useState(0)
 
   return (
     <>
@@ -44,7 +46,14 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route exact path="/" element={<Menu shoppingItem={shoppingItem}/>} />
-            <Route exact path="/checkout" element={<Checkout shoppingItem={shoppingItem} selectedToppings={selectedToppings} price={price}/>} />
+            <Route exact path="/checkout" element={
+              <Checkout 
+                shoppingItem={shoppingItem} 
+                selectedToppings={selectedToppings} price={price}
+                setShoppingItem={setShoppingItem}
+                setReceiptItem={(num) => setReceiptItem(num)}
+                />
+                } />
             <Route exact path="/custom-order" element={
               <CustomerOrder 
                 shoppingItem={shoppingItem} 
@@ -56,6 +65,7 @@ function App() {
                 />} />
             <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route exact path="/auth" element={<AuthenticationPage />} />
+            <Route exact path="/receipt" element={<Receipt receiptItem={receiptItem} price={price} />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

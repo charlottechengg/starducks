@@ -1,23 +1,26 @@
 import React from "react";
-import { render } from "react-dom";
 
 import { Col, Divider, Row, Table } from 'antd';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 
-const Receipt= () => {
+const Receipt = ({receiptItem, price}) => {
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = `${yyyy}-${mm}-${dd}`;
+
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{}}>
       <Row>
-        <Col>
-          <Divider>Receipt</Divider>
-        </Col>
+        <h1>Receipt</h1>
       </Row>
 
+      <h3>StarDucks Bubble Tea</h3>
       <Row gutter={24} style={{ marginTop: 32 }}>
-        <Col span={8}>
-          <h3>StarDucks Bubble Tea</h3>
-        </Col>
-        <Col span={8} offset={8}>
+        <Col>
           <table>
             <tr>
               <th>Invoice # :</th>
@@ -25,11 +28,11 @@ const Receipt= () => {
             </tr>
             <tr>
               <th>Invoice Date :</th>
-              <td>10-01-2018</td>
+              <td>{today}</td>
             </tr>
             <tr>
               <th>Due Date :</th>
-              <td>10-01-2018</td>
+              <td>{today}</td>
             </tr>
           </table>
         </Col>
@@ -38,35 +41,31 @@ const Receipt= () => {
 
       <Row style={{ marginTop: 48 }}>
         <Table dataSource={[{
-            id: 1,
-            name: 'Milk tea',
-            toppings: 'Lychee',
-            price: 10.00,
-            quantity: 1
+          id: 1,
+          name: 'Bubble Tea',
+          price: `${price}`,
         }]}
-        pagination={false}
+          pagination={false}
         >
           <Table.Column title="Items" dataIndex='name' />
-          <Table.Column title="Toppings" dataIndex='toppings' />
-          <Table.Column title="Quantity" dataIndex='quantity' />
           <Table.Column title="Price" dataIndex='price' />
         </Table>
       </Row>
 
       <Row style={{ marginTop: 48 }}>
-        <Col span={8} offset={16}>
+        <Col>
           <table>
             <tr>
               <th>Subtotal :</th>
-              <td>$10.00</td>
+              <td>${price}</td>
             </tr>
             <tr>
               <th>Tax</th>
-              <td>$1.00 </td>
+              <td>${(price * 0.13).toFixed(2)} </td>
             </tr>
             <tr>
               <th>Total :</th>
-              <td>$11.00</td>
+              <td>${(price * 1.13).toFixed(2)}</td>
             </tr>
           </table>
         </Col>
@@ -79,4 +78,4 @@ const Receipt= () => {
   );
 };
 
-render(<Receipt />, document.getElementById("root"));
+export default Receipt;
