@@ -1,5 +1,5 @@
 # starducks
-
+4hc3 coursework
 ### How to run
 This is an application boostrapped with React.js, to run this project, make sure you have node and react installed locally.
 On your terminal
